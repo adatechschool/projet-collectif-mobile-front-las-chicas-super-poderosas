@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="background">#F6DEC0</color>
+    <color name="backgroundText">#2D4967</color>
+    <color name="componentBackground">#DEBB9B</color>
+    <color name="boxComponentBackground">#EDD78D</color>
+    <color name="componentText">#2D4967</color>
+    <color name="buttonBackground">#CED77D</color>
+    <color name="buttonText">#142608</color>
+
+
+</resources>
