@@ -17,8 +17,9 @@ class MainActivity : AppCompatActivity() {
     val listView=findViewById<ListView>(R.id.list_view)
     val spots= arrayOf("Teahupoo","Biarritz","Bondi Beach","Maui")
     val arrayAdapter:ArrayAdapter<String> = ArrayAdapter(
-        this, android.R.layout.simple_list_item_1
+        this, android.R.layout.simple_list_item_1,spots
     )
+   listView.adapter=arrayAdapter
 
 
 
