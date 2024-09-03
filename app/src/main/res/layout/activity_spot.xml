@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Teahupoo"
+        android:id="@+id/spot_activity_name"
         android:textSize="45sp"
         android:textAlignment="center"
         android:textColor="@color/backgroundText"/>
@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tahiti - Polynésie Française"
+        android:id="@+id/spot_activity_location"
         android:textSize="27sp"
         android:textAlignment="center"
         android:textColor="@color/backgroundText"

@@ -65,8 +65,15 @@ class MainActivity : AppCompatActivity() {
 
                 val button = view.findViewById<Button>(R.id.spot_btn)
                 button.setOnClickListener {
-                    finish()
-                    startActivity(Intent(applicationContext, SpotActivity::class.java))
+                    // Créer un Intent pour lancer SpotDetailActivity
+                    val intent = Intent(applicationContext, SpotActivity::class.java)
+
+                    // Ajouter les détails du Spot à l'Intent
+                    intent.putExtra("SPOT_NAME", spot?.name)
+                    intent.putExtra("SPOT_LOCATION", spot?.location)
+
+                    // Lancer l'activité
+                    startActivity(intent)
                 }
 
                 return view

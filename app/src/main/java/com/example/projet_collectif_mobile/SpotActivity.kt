@@ -1,6 +1,7 @@
 package com.example.projet_collectif_mobile
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,10 +14,16 @@ class SpotActivity : AppCompatActivity() {
         setContentView(R.layout.activity_spot)
 
 
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
+        // Récupère nom et location spot depuis intent
+        val spotName = intent.getStringExtra("SPOT_NAME")
+        val spotLocation = intent.getStringExtra("SPOT_LOCATION")
+
+        // Affiche details
+        val nameTextView = findViewById<TextView>(R.id.spot_activity_name)
+        val locationTextView = findViewById<TextView>(R.id.spot_activity_location)
+
+        nameTextView.text = spotName
+        locationTextView.text = spotLocation
+
     }
 }
