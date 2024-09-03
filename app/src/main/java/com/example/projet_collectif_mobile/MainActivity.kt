@@ -1,10 +1,12 @@
 package com.example.projet_collectif_mobile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
@@ -61,11 +63,20 @@ class MainActivity : AppCompatActivity() {
                 // Utilisation de Picasso pour charger l'image depuis l'URL - importer picasso
                 //Picasso.get().load(spot?.picture).into(spotPictureView)
 
+                val button = view.findViewById<Button>(R.id.spot_btn)
+                button.setOnClickListener {
+                    finish()
+                    startActivity(Intent(applicationContext, SpotActivity::class.java))
+                }
+
                 return view
             }
         }
 
         listView.adapter = arrayAdapter
+
+
+
 
 
 
