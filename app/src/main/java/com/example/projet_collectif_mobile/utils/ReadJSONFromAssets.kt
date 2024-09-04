@@ -1,8 +1,6 @@
 package com.example.projet_collectif_mobile.utils
 
 import android.content.Context
-import android.util.Log
-//import com.delasign.samplestarterproject.models.constants.DebuggingIdentifiers
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
