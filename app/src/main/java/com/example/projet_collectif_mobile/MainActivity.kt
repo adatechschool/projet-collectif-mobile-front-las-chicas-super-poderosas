@@ -17,10 +17,16 @@ import androidx.appcompat.app.AppCompatActivity
 
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.projet_collectif_mobile.models.Records
+import com.example.projet_collectif_mobile.models.SurfSpot
+import com.example.projet_collectif_mobile.utils.ReadJSONFromAssets
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val jsonString = ReadJSONFromAssets(baseContext, path = "spotsData.json")
+        val data = Gson().fromJson(jsonString, Records::class.java)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
@@ -28,18 +34,18 @@ class MainActivity : AppCompatActivity() {
         val listView=findViewById<ListView>(R.id.list_view)
 
         // Initie une class Spot crée un tableau dont les éléments reprennent la structure de la classe Spot
-        data class Spot(val name: String, val location: String, val picture: String)
+        /*data class Spot(val name: String, val location: String, val picture: String)
 
         val spots = arrayOf(
             Spot("Teahupoo", "Tahiti", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ02SzYR4LxRVqLo3HFLefhNcE22JjEj24kkw&s"),
             Spot("Biarritz", "France", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-cftY1qwLdelg3ru0m_dllTyCcGWFY2p4TQ&s"),
             Spot("Bondi Beach", "Australia", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMViIpETrKU-cQURaTVSng572oH3_z7zf0QQ&s"),
             Spot("Maui", "Hawaii", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMViIpETrKU-cQURaTVSng572oH3_z7zf0QQ&s")
-        )
+        )*/
 
         //initialise Adapter = class native Android
-        val arrayAdapter: ArrayAdapter<Spot> = object : ArrayAdapter<Spot>(
-            this, R.layout.list_item, spots
+        val arrayAdapter: ArrayAdapter<SurfSpot> = object : ArrayAdapter<SurfSpot>(
+            this, R.layout.list_item, data.records
         ) {
             // surcharge méthode getView
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -57,8 +63,8 @@ class MainActivity : AppCompatActivity() {
                 val spotPictureView = view.findViewById<ImageView>(R.id.spot_img)
 
                 // Remplir les TextViews avec les données de l'objet Spot
-                spotNameTextView.text = spot?.name
-                spotLocationTextView.text = spot?.location
+                spotNameTextView.text = spot?.surfBreak
+                spotLocationTextView.text = spot?.Address
 
                 // Utilisation de Picasso pour charger l'image depuis l'URL - importer picasso
                 //Picasso.get().load(spot?.picture).into(spotPictureView)
@@ -69,8 +75,8 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(applicationContext, SpotActivity::class.java)
 
                     // Ajouter les détails du Spot à l'Intent
-                    intent.putExtra("SPOT_NAME", spot?.name)
-                    intent.putExtra("SPOT_LOCATION", spot?.location)
+                    intent.putExtra("SPOT_NAME", spot?.surfBreak)
+                    intent.putExtra("SPOT_LOCATION", spot?.Address)
 
                     // Lancer l'activité
                     startActivity(intent)
