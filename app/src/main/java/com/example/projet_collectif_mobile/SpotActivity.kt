@@ -1,6 +1,8 @@
 package com.example.projet_collectif_mobile
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +26,12 @@ class SpotActivity : AppCompatActivity() {
 
         nameTextView.text = spotName
         locationTextView.text = spotLocation
+
+        val button = findViewById<Button>(R.id.back_button)
+        button.setOnClickListener {
+            finish()
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+        }
 
     }
 }
