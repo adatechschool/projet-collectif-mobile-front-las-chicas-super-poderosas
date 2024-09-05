@@ -17,8 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.projet_collectif_mobile.models.Records
-import com.example.projet_collectif_mobile.models.SurfSpot
+import com.example.projet_collectif_mobile.models.ClassJson
 import com.example.projet_collectif_mobile.utils.ReadJSONFromAssets
 import com.google.gson.Gson
 
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // Récupère les données du fichier JSON
         val jsonString = ReadJSONFromAssets(baseContext, path = "spotsData.json")
         // Convertit le JSON en objet Kotlin
-        val data = Gson().fromJson(jsonString, Records::class.java)
+        val data = Gson().fromJson(jsonString, ClassJson::class.java)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //initialise Adapter = class native Android
-        val arrayAdapter: ArrayAdapter<SurfSpot> = object : ArrayAdapter<SurfSpot>(
+        val arrayAdapter: ArrayAdapter<ClassJson.SurfSpot> = object : ArrayAdapter<ClassJson.SurfSpot>(
             this, R.layout.list_item, data.records
         ) {
             // surcharge méthode getView
@@ -59,8 +58,8 @@ class MainActivity : AppCompatActivity() {
                 val spotPictureView = view.findViewById<ImageView>(R.id.spot_img)
 
                 // Remplir les TextViews avec les données de l'objet Spot
-                spotNameTextView.text = spot?.surfBreak
-                spotLocationTextView.text = spot?.Address
+                spotNameTextView.text = spot?.fields?.surfBreak?.joinToString(", ")
+                spotLocationTextView.text = spot?.fields?.Address
 
                 // Utilisation de Picasso pour charger l'image depuis l'URL - importer picasso
                 //Picasso.get().load(spot?.picture).into(spotPictureView)
@@ -71,8 +70,8 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(applicationContext, SpotActivity::class.java)
 
                     // Ajouter les détails du Spot à l'Intent
-                    intent.putExtra("SPOT_NAME", spot?.surfBreak)
-                    intent.putExtra("SPOT_LOCATION", spot?.Address)
+                    intent.putExtra("SPOT_NAME", spot?.fields?.surfBreak?.joinToString(", "))
+                    intent.putExtra("SPOT_LOCATION", spot?.fields?.Address)
 
                     // Lancer l'activité
                     startActivity(intent)
