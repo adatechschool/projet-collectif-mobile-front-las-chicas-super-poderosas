@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Récupère les données du fichier JSON
         val jsonString = ReadJSONFromAssets(baseContext, path = "spotsData.json")
+        // Convertit le JSON en objet Kotlin
         val data = Gson().fromJson(jsonString, Records::class.java)
 
         enableEdgeToEdge()
@@ -82,65 +84,5 @@ class MainActivity : AppCompatActivity() {
 
         listView.adapter = arrayAdapter
 
-
-
-
-
-
-
-
-
-
-
-
-
-        /* **ETAPE 1**
-        //Se place au niveau de l'id
-        val listView=findViewById<ListView>(R.id.list_view)
-
-        //Cree un tableau de spots
-        val spots = arrayOf("Teahupoo","Biarritz","Bondi Beach","Australia")
-
-        //initialise Adapter = class native Android
-        val arrayAdapter:ArrayAdapter<String> = ArrayAdapter(
-        this, android.R.layout.simple_list_item_1,spots
-        )
-
-        //associe adapter à ListView
-        listView.adapter=arrayAdapter
-
-
-
-        **ETAPE 2**
-
-        //Se place au niveau de l'id
-        val listView=findViewById<ListView>(R.id.list_view)
-
-        //Cree une class spot
-        data class Spot(val name: String, val location: String)
-        val spots = arrayOf(
-            Spot("Teahupoo", "Tahiti"),
-            Spot("Biarritz", "France"),
-            Spot("Bondi Beach", "Australia"),
-            Spot("Maui", "Hawaii")
-        )
-
-        //initialise Adapter = class native Android
-        val arrayAdapter: ArrayAdapter<Spot> = object : ArrayAdapter<Spot>(
-            this, android.R.layout.simple_list_item_1, spots
-        ) {
-            // getView = méthode réitérer vue affichée ds ListView
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getView(position, convertView, parent) // super appelle méthode de la classe mère ds laquelle on veut changer des arguments (ici getView)
-                val textView = view.findViewById<TextView>(android.R.id.text1)
-                textView.text = getItem(position)?.location
-                return view
-            }
-        }
-
-        //associe adapter à ListView
-        listView.adapter = arrayAdapter
-
-        */
     }
 }
