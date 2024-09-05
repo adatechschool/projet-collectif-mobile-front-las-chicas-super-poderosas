@@ -1,6 +1,7 @@
 *.iml
 .gradle
 gradle/libs.versions.toml
+app/build.gradle.kts
 /local.properties
 .idea/*
 .DS_Store
