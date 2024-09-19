@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
                     // Remplir les TextViews avec les données de l'objet Spot
                     spotNameTextView.text = spot?.surfBreak?.joinToString(", ")
-                    spotLocationTextView.text = spot?.Address
+                    spotLocationTextView.text = spot?.address
 
                     // Utilisation de Picasso pour charger l'image depuis l'URL - importer picasso
                     //Picasso.get().load(spot?.picture).into(spotPictureView)
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
                         // Ajouter les détails du Spot à l'Intent
                         intent.putExtra("SPOT_NAME", spot?.surfBreak?.joinToString(", "))
-                        intent.putExtra("SPOT_LOCATION", spot?.Address)
+                        intent.putExtra("SPOT_LOCATION", spot?.address)
 
                         // Lancer l'activité
                         startActivity(intent)
